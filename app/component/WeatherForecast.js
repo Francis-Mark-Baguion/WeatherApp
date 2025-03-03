@@ -6,37 +6,40 @@ const WeatherForecast = ({ data }) => {
   }
 
   return (
-    <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-8 w-full">
-      {data.forecast.forecastday.map((day, index) => (
-        <div
-          key={index}
-          className="bg-white/40 p-2 text-center rounded-lg flex flex-col items-center font-semibold gap-4"
-          role="group"
-          aria-label={`Forecast for ${new Date(day.date).toLocaleString("en-US", { weekday: "short" })}`}
-        >
-          <p className="italic text-2xl">{new Date(day.date).toLocaleString("en-US", { weekday: "short" })}</p>
-          <img
-            className="w-25 h-30"
-            src={day?.day?.condition?.icon}
-            alt={day?.day?.condition?.text}
-            aria-label={day?.day?.condition?.text}
-          />
-          <div>
-            <p className="bg-black/25 px-2 italic rounded-xl text-white mb-2">
-              High:{" "}
-              <span aria-label={`Maximum temperature: ${day?.day?.maxtemp_c?.toFixed()} degrees Fahrenheit`}>
-                {day?.day?.maxtemp_c?.toFixed()}°
-              </span>
-            </p>
-            <p className="bg-black/25 px-2 italic rounded-xl text-white">
-              Low:{" "}
-              <span aria-label={`Minimum temperature: ${day?.day?.mintemp_c?.toFixed()} degrees Fahrenheit`}>
-                {day?.day?.mintemp_c?.toFixed()}°
-              </span>
-            </p>
+    <div className="relative rounded-3xl bg-white/10 backdrop-blur-lg shadow-xl border border-white/20 p-4">
+      {/* Header */}
+      <h2 className="text-white text-xl font-bold text-center mb-4">Daily Forecast</h2>
+
+      <div className="flex flex-col gap-3 w-full">
+        {data.forecast.forecastday.map((day, index) => (
+          <div
+            key={index}
+            className="bg-gray-500/40 flex items-center justify-around p-2 rounded-xl shadow-md"
+            role="group"
+            aria-label={`Forecast for ${new Date(day.date).toLocaleString("en-US", { weekday: "short" })}`}
+          >
+            {/* Weather Icon */}
+            <img
+              className="w-10 h-10"
+              src={day?.day?.condition?.icon}
+              alt={day?.day?.condition?.text}
+              aria-label={day?.day?.condition?.text}
+            />
+
+            {/* Condition Text (Middle) */}
+            <p className="text-sm text-white font-medium text-center">{day?.day?.condition?.text}</p>
+
+            {/* Temperature & Date */}
+            <div className="text-right">
+              <p className="text-lg font-semibold italic text-white">
+                {new Date(day.date).toLocaleString("en-US", { weekday: "short" })}
+              </p>
+              <p className="text-sm text-white/80">High: {day?.day?.maxtemp_c?.toFixed()}°</p>
+              <p className="text-sm text-white/80">Low: {day?.day?.mintemp_c?.toFixed()}°</p>
+            </div>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 };

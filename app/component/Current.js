@@ -13,7 +13,7 @@ const Current = ({ data }) => {
   const currentDate = getCurrentDate();
 
   return (
-    <div className="flex flex-col mb-8 md:mb-0 items-start gap-2 bg-black/25 p-6 rounded-xl">
+    <div className="relative rounded-3xl bg-white/10 backdrop-blur-lg shadow-xl border border-white/20 p-10">
       <div className="flex items-center">
         <div className="">
           <h1 className="text-3xl text-white">Today</h1>

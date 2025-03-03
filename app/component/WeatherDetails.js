@@ -1,114 +1,46 @@
-import React from 'react';
+import React from "react";
 import { GiWindSlap, GiCompass } from "react-icons/gi";
 import { BsSunrise, BsSunset } from "react-icons/bs";
 import { WiHumidity } from "react-icons/wi";
 import { MdAir } from "react-icons/md";
 import { CiTempHigh } from "react-icons/ci";
 import { FaEye } from "react-icons/fa";
+import Map from "./Map"; // Import the new Map component
 
 const WeatherDetails = ({ data }) => {
-  if (!data?.current) {
+  if (!data?.current || !data?.location) {
     return null;
   }
 
   return (
     <div className="p-12">
+
       <h1 className="mb-4 text-2xl text-white italic font-bold">Weather Details</h1>
 
+      {/* Weather Information Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 text-center italic font-bold">
-        <div className="bg-white/50 flex p-4 items-center justify-center gap-6 rounded-xl">
-          <div className="text-2xl flex col-auto">
-            <h3>Wind Speed</h3>
-            <h3
-              className="text-white bg-black/25 rounded-xl mt-1"
-              aria-label={`Wind Speed: ${data.current.wind_mph} mph`}
-            >
-              {data.current.wind_mph} mph
-            </h3>
-            <GiWindSlap size={30} /> 
-          </div>
-        </div>
-        <div className="bg-white/50 flex p-4 items-center justify-center gap-6 rounded-xl">
-          <div className="text-2xl">
-            <h3>Humidity</h3>
-            <h3 className="text-white bg-black/25 rounded-xl mt-1" aria-label={`Humidity: ${data.current.humidity}%`}>
-              {data.current.humidity}%
-            </h3>
-            <WiHumidity size={30} />
-          </div>
-        </div>
-        <div className="bg-white/50 flex p-4 items-center justify-center gap-6 rounded-xl">
-          <div className="text-2xl">
-            <h3>Wind Direction</h3>
-            <h3
-              className="text-white bg-black/25 rounded-xl mt-1"
-              aria-label={`Wind Direction: ${data.current.wind_dir}`}
-            >
-              {data.current.wind_dir}
-            </h3>
-            <GiCompass size={30} />
-          </div>
-        </div>
-        <div className="bg-white/50 flex p-4 items-center justify-center gap-6 rounded-xl">
-          <div className="text-2xl">
-            <h3>Sunrise</h3>
-            <h3
-              className="text-white bg-black/25 rounded-xl mt-1 px-2"
-              aria-label={`Sunrise: ${data?.forecast?.forecastday?.[0]?.astro?.sunrise}`}
-            >
-              {data?.forecast?.forecastday?.[0]?.astro?.sunrise}
-            </h3>
-            <BsSunrise size={30} />
-          </div>
-        </div>
-        <div className="bg-white/50 flex p-4 items-center justify-center gap-6 rounded-xl">
-          <div className="text-2xl">
-            <h3>Sunset</h3>
-            <h3
-              className="text-white bg-black/25 rounded-xl mt-1 px-2"
-              aria-label={`Sunset: ${data?.forecast?.forecastday?.[0]?.astro?.sunset}`}
-            >
-              {data?.forecast?.forecastday?.[0]?.astro?.sunset}
-            </h3>
-            <BsSunset size={30} />
-          </div>
-        </div>
-        <div className="bg-white/50 flex p-4 items-center justify-center gap-6 rounded-xl">
-          <div className="text-2xl">
-            <h3>Air Pressure</h3>
-            <h3
-              className="text-white bg-black/25 rounded-xl mt-1"
-              aria-label={`Air Pressure: ${data.current.pressure_mb} hPa`}
-            >
-              {data.current.pressure_mb} hPa
-            </h3>
-            <MdAir size={30} />
-          </div>
-        </div>
-        <div className="bg-white/50 flex p-4 items-center justify-center gap-6 rounded-xl">
-          <div className="text-2xl">
-            <h3>Feels Like</h3>
-            <h3
-              className="text-white bg-black/25 rounded-xl mt-1"
-              aria-label={`Feels Like: ${data.current.feelslike_c}°`}
-            >
-              {data.current.feelslike_c}°
-            </h3>
-            <CiTempHigh size={30} />
-          </div>
-        </div>
-        <div className="bg-white/50 flex p-4 items-center justify-center gap-6 rounded-xl">
-          <div className="text-2xl">
-            <h3>Visibility</h3>
-            <h3 className="text-white bg-black/25 rounded-xl mt-1" aria-label={`Visibility: ${data.current.vis_km} km`}>
-              {data.current.vis_km} km
-            </h3>
-            <FaEye size={30} />
-          </div>
-        </div>
+        <WeatherItem title="Wind Speed" value={`${data.current.wind_mph} mph`} icon={<GiWindSlap size={40} />} />
+        <WeatherItem title="Humidity" value={`${data.current.humidity}%`} icon={<WiHumidity size={40} />} />
+        <WeatherItem title="Wind Direction" value={data.current.wind_dir} icon={<GiCompass size={40} />} />
+        <WeatherItem title="Sunrise" value={data?.forecast?.forecastday?.[0]?.astro?.sunrise} icon={<BsSunrise size={40} />} />
+        <WeatherItem title="Sunset" value={data?.forecast?.forecastday?.[0]?.astro?.sunset} icon={<BsSunset size={40} />} />
+        <WeatherItem title="Air Pressure" value={`${data.current.pressure_mb} hPa`} icon={<MdAir size={40} />} />
+        <WeatherItem title="Feels Like" value={`${data.current.feelslike_c}°`} icon={<CiTempHigh size={40} />} />
+        <WeatherItem title="Visibility" value={`${data.current.vis_km} km`} icon={<FaEye size={40} />} />
       </div>
     </div>
   );
 };
+
+// Weather Item Component
+const WeatherItem = ({ title, value, icon }) => (
+  <div className="bg-white/50 p-3 rounded-lg shadow-sm transition-transform hover:scale-105 flex items-center justify-between w-full">
+    <div className="mr-3 text-3xl text-gray-800">{icon}</div>
+    <div className="flex flex-col items-end">
+      <h3 className="text-sm font-semibold text-gray-700">{title}</h3>
+      <div className="mt-1 text-xl font-bold text-gray-600">{value}</div>
+    </div>
+  </div>
+);
 
 export default WeatherDetails;
