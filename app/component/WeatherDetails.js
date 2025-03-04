@@ -35,10 +35,10 @@ const WeatherDetails = ({ data }) => {
 // Weather Item Component
 const WeatherItem = ({ title, value, icon }) => (
   <div className="bg-white/50 p-3 rounded-lg shadow-sm transition-transform hover:scale-105 flex items-center justify-between w-full">
-    <div className="mr-3 text-3xl text-gray-800">{icon}</div>
+    <div className="mr-3 text-3xl text-white  ">{icon}</div>
     <div className="flex flex-col items-end">
-      <h3 className="text-sm font-semibold text-gray-700">{title}</h3>
-      <div className="mt-1 text-xl font-bold text-gray-600">{value}</div>
+      <h3 className="text-sm font-semibold text-white">{title}</h3>
+      <div className="mt-1 text-xl font-bold text-white">{value}</div>
     </div>
   </div>
 );
