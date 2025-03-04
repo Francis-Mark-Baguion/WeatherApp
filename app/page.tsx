@@ -41,7 +41,7 @@ const Page = () => {
   }, []);
 
   const fetchWeather = async (query: string) => {
-    const url = `http://api.weatherapi.com/v1/forecast.json?key=88887ddac2c241ca9f2205119250103&q=${query}&days=7&aqi=yes&alerts=yes`;
+    const url = `https://api.weatherapi.com/v1/forecast.json?key=88887ddac2c241ca9f2205119250103&q=${query}&days=7&aqi=yes&alerts=yes`;
     try {
       const res = await fetch(url);
       if (!res.ok) throw new Error("Location not found");
