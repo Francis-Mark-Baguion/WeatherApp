@@ -94,20 +94,21 @@ const Page = () => {
           
         </div>
         {/* Right: Map (70%) */}
-        <div className="md:w-2/3 w-full flex flex-col h-[600]">
-          <div className="relative rounded-3xl bg-white/10 backdrop-blur-lg shadow-xl border border-white/20 p-6 flex-1">
-            {data.location && <Map lat={data.location.lat} lon={data.location.lon} />}
+<div className="md:w-2/3 w-full flex flex-col h-[600]">
+  <div className="relative rounded-3xl bg-white/10 backdrop-blur-lg shadow-xl border border-white/20 p-6 flex-1 flex flex-col items-center justify-center">
+    {data.location && <Map lat={data.location.lat} lon={data.location.lon} />}
 
-            {/* Text Content */}
-            <div className="mt-6 text-white text-center">
-              <h2 className="text-2xl font-bold">Weather Map Overview</h2>
-              <p className="mt-2 text-lg text-white/80">
-                Stay updated with real-time weather conditions using our interactive weather map.
-                Explore temperature changes, precipitation patterns, and wind movements across different locations.
-              </p>
-            </div>
-          </div>
-        </div>
+    {/* Text Content Inside the Frosted Panel */}
+    <div className="mt-6 text-white text-center">
+      <h2 className="text-2xl font-bold">Weather Map Overview</h2>
+      <p className="mt-2 text-lg text-white/80">
+        Stay updated with real-time weather conditions using our interactive weather map.
+        Explore temperature changes, precipitation patterns, and wind movements across different locations.
+      </p>
+    </div>
+  </div>
+</div>
+
 </div>
       <div>
               <WeatherDetails data={data} />
