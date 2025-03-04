@@ -5,7 +5,6 @@ import { WiHumidity } from "react-icons/wi";
 import { MdAir } from "react-icons/md";
 import { CiTempHigh } from "react-icons/ci";
 import { FaEye } from "react-icons/fa";
-import Map from "./Map"; // Import the new Map component
 
 const WeatherDetails = ({ data }) => {
   if (!data?.current || !data?.location) {

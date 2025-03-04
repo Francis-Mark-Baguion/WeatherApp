@@ -5,7 +5,7 @@ import Current from "./component/Current";
 import WeatherDetails from "./component/WeatherDetails";
 import WeatherForecast from "./component/WeatherForecast";
 import SearchIcon from '@mui/icons-material/Search';
-import Map from "./component/Map"; 
+import Map from "./component/map"; 
 
 const Page = () => {
   interface WeatherData {
