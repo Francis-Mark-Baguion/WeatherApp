@@ -1,7 +1,7 @@
 import React from 'react';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 
-// Assuming you have a currentDate.js or currentDate.ts file with this function
+
 const getCurrentDate = () => {
   const currentDate = new Date();
   const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };

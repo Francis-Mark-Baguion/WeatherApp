@@ -1,9 +1,9 @@
 import React, { useRef, useEffect } from "react";
 import dynamic from "next/dynamic";
 
-// Dynamically import Leaflet to prevent SSR issues
+
 const Leaflet = dynamic(() => import("leaflet"), { ssr: false });
-import "leaflet/dist/leaflet.css"; // Load Leaflet styles
+import "leaflet/dist/leaflet.css"; 
 
 const Map = ({ lat, lon }) => {
   const mapRef = useRef(null);
@@ -14,10 +14,10 @@ const Map = ({ lat, lon }) => {
     if (typeof window !== "undefined") {
       Promise.all([import("leaflet")]).then(([L]) => {
         try {
-          // Custom Marker Icon
+          
           const customIcon = L.icon({
-            iconUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png", // Use latest version
-            shadowUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png", // Use latest version
+            iconUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png", 
+            shadowUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png", 
             iconSize: [25, 41],
             iconAnchor: [12, 41],
             popupAnchor: [1, -34],
@@ -25,7 +25,7 @@ const Map = ({ lat, lon }) => {
           });
 
           if (!leafletMap.current && mapRef.current) {
-            // Initialize the map
+            
             leafletMap.current = L.map(mapRef.current).setView([lat, lon], 10);
 
             L.tileLayer(
@@ -35,12 +35,12 @@ const Map = ({ lat, lon }) => {
               }
             ).addTo(leafletMap.current);
 
-            // Add marker
+            
             markerRef.current = L.marker([lat, lon], { icon: customIcon }).addTo(
               leafletMap.current
             );
           } else {
-            // Update existing map
+            
             leafletMap.current.setView([lat, lon], 10);
             if (markerRef.current) {
               markerRef.current.setLatLng([lat, lon]);
@@ -51,7 +51,7 @@ const Map = ({ lat, lon }) => {
         }
       });
     }
-  }, [lat, lon]); // Runs when location changes
+  }, [lat, lon]); 
 
   return (
     <div
