@@ -68,7 +68,7 @@ const Page = () => {
           <div className="flex flex-col md:flex-row justify-between items-center p-5 max-w-7xl mx-auto">
             <div className="flex items-center gap-3">
               <img src="/weather-app.png" alt="Weather Logo" className="w-12 h-12" />
-              <h1 className="text-2xl font-bold text-white tracking-wide">Weather App</h1>
+              <h1 className="text-2xl font-bold text-white tracking-wide">Weathering</h1>
             </div>
             <div className="relative w-full md:w-96 mt-4 md:mt-0">
               <input
